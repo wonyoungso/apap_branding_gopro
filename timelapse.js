@@ -1,7 +1,8 @@
 var when = require('when')
-var Camera = require('../index').Camera
+var Camera = require('./index').Camera
 var fsPath = require('path')
 var fs = require('fs')
+var savePath = '/Users/WonyoungSo/Desktop/apap_branding/public/gopro_pictures/'
 
 var camera = new Camera('10.5.5.9', 'qwertyui')
 
@@ -52,7 +53,7 @@ function mirror(fromPath, toPath) {
 			if (path.isFolder)
 				return mirror(src, dest)
 
-			return getImage(src, new Date().getTime()+'.jpg')
+			return getImage(src, toPath + new Date().getTime()+'.jpg')
 		})
 	})
 }
@@ -60,14 +61,14 @@ function mirror(fromPath, toPath) {
 function snapGetAndDelete() {
 	return snap()
 	.then(function() {
-		return mirror('/videos/DCIM/100GOPRO', process.cwd())
+		return mirror('/videos/DCIM/100GOPRO', savePath)
 	})
 	.then(function() {
 		return camera.deleteLast()
 	})
 }
 
-var interval = 10000
+var interval = 100000
 
 function loop() {
 	var tstart = Date.now()
