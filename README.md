@@ -1,5 +1,3 @@
-gopro
-========
 
 API for controlling GoPro Hero 3 Camera from Node.js.
 
@@ -27,4 +25,3 @@ As there is no public API, this work is based on these reverse engineering effor
 ```
 
 See also the examples folder and tests.
-
